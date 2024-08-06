@@ -24,11 +24,14 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     text-align: left;
-    width: 300px;
+    width: 500px;
 }
 
 .info p {
-    margin: 5px 0;
+    margin: 10px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 button {
