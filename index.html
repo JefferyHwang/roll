@@ -17,7 +17,7 @@
         <p>🥈Second Prize Winner: <span id="secondPrizeWinner"></span></p>
         <p>🥉Third Prize Winner: <span id="thirdPrizeWinner"></span></p>
     </div>
-    <button onclick="enterLottery()">Enter Lottery</button>
+    <button id="lotteryButton" onclick="enterLottery()">Enter Lottery</button>
 
     <script>
         const contractAddress = '0x6A9F882f831296A6488da13b3f09e564e9E3D868'; // 替换为你的合约地址
@@ -196,12 +196,16 @@
 
             const thirdPrizeWinner = await contract.methods.thirdPrizeWinner().call();
             document.getElementById('thirdPrizeWinner').innerText = formatAddress(thirdPrizeWinner);
+
+            document.getElementById('connectButton').innerText = 'Connected';
+            document.getElementById('connectButton').style.opacity = 0.5;
         }
 
         async function enterLottery() {
             await contract.methods.enterLottery().send({ from: accounts[0] });
             const participants = await contract.methods.getParticipants().call();
             document.getElementById('participants').innerText = participants.map(formatAddress).join(', ');
+            document.getElementById('lotteryButton').innerText = 'Entered Lottery';
         }
 
         async function connectWallet() {
