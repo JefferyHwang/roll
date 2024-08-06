@@ -45,3 +45,9 @@ button {
 button:hover {
     background-color: #6836325f;
 }
+
+#connectButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}

@@ -8,9 +8,10 @@
 </head>
 <body>
     <h1>🐻Lottery DApp</h1>
+    <button id="connectButton" onclick="connectWallet()">Connect Wallet</button>
     <div class="info">
         <p><b>Manager: <span id="manager"></span></b></p>
-        <p>Your account: <span id="account"></span></p>
+        <p>Your account: <span id="account" title=""></span></p>
         <p>Participants: <span id="participants"></span></p>
         <p>🥇First Prize Winner: <span id="firstPrizeWinner"></span></p>
         <p>🥈Second Prize Winner: <span id="secondPrizeWinner"></span></p>
@@ -178,7 +179,8 @@
 
         async function loadBlockchainData() {
             accounts = await web3.eth.getAccounts();
-            document.getElementById('account').innerText = accounts[0];
+            document.getElementById('account').innerText = formatAddress(accounts[0]);
+            document.getElementById('account').title = accounts[0]; // 显示完整地址
             contract = new web3.eth.Contract(contractABI, contractAddress);
 
             const manager = await contract.methods.manager().call();
@@ -203,9 +205,16 @@
             document.getElementById('participants').innerText = participants.map(formatAddress).join(', ');
         }
 
-        window.addEventListener('load', async () => {
+        async function connectWallet() {
             await loadWeb3();
             await loadBlockchainData();
+        }
+
+        window.addEventListener('load', async () => {
+            if (window.ethereum || window.web3) {
+                await loadWeb3();
+                await loadBlockchainData();
+            }
         });
     </script>
 </body>
