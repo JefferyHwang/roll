@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lottery DApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="Lottery.css"> 
+</head>
+<body>
+    <h1>🐻Lottery DApp</h1>
+    <div class="text">
+    <p><b>Manager: <span id="manager"></span></p >
+    <p>Your account: <span id="account"></span></p >
+    <p>Participants: <span id="participants"></span></p >
+    <p>🥇First Prize Winner: <span id="firstPrizeWinner"></span></p >
+    <p>🥈Second Prize Winner: <span id="secondPrizeWinner"></span></p >
+    <p>🥉Third Prize Winner: <span id="thirdPrizeWinner"></span></p >
+    </div>
+    <input type="text" id="newMessage" placeholder="Enter new message">
+    <button onclick="enterLottery()">Enter Lottery</button>
+
+    <script>
+        const contractAddress = 'YOUR_CONTRACT_ADDRESS'; // 替换为你的合约地址
+        const contractABI = [
+            // 替换为你的合约 ABI
+            {
+                "inputs": [],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [],
+                "name": "enterLottery",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "drawLottery",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "getParticipants",
+                "outputs": [
+                    {
+                        "internalType": "address[]",
+                        "name": "",
+                        "type": "address[]"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "manager",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "firstPrizeWinner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "secondPrizeWinner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "thirdPrizeWinner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "participants",
+                "outputs": [
+                    {
+                        "internalType": "address[]",
+                        "name": "",
+                        "type": "address[]"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ];
+
+        let web3;
+        let contract;
+        let accounts;
+
+        async function loadWeb3() {
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+                await window.ethereum.enable();
+            } else if (window.web3) {
+                web3 = new Web3(window.web3.currentProvider);
+            } else {
+                alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            }
+        }
+
+        async function loadBlockchainData() {
+            accounts = await web3.eth.getAccounts();
+            document.getElementById('account').innerText = accounts[0];
+            contract = new web3.eth.Contract(contractABI, contractAddress);
+
+            const manager = await contract.methods.manager().call();
+            document.getElementById('manager').innerText = manager;
+
+            const participants = await contract.methods.getParticipants().call();
+            document.getElementById('participants').innerText = participants.join(', ');
+
+            const firstPrizeWinner = await contract.methods.firstPrizeWinner().call();
+            document.getElementById('firstPrizeWinner').innerText = firstPrizeWinner;
+
+            const secondPrizeWinner = await contract.methods.secondPrizeWinner().call();
+            document.getElementById('secondPrizeWinner').innerText = secondPrizeWinner;
+
+            const thirdPrizeWinner = await contract.methods.thirdPrizeWinner().call();
+            document.getElementById('thirdPrizeWinner').innerText = thirdPrizeWinner;
+        }
+
+        async function enterLottery() {
+            await contract.methods.enterLottery().send({ from: accounts[0] });
+            const participants = await contract.methods.getParticipants().call();
+            document.getElementById('participants').innerText = participants.join(', ');
+        }
+
+        window.addEventListener('load', async () => {
+            await loadWeb3();
+            await loadBlockchainData();
+        });
+    </script>
+</body>
+</html>
