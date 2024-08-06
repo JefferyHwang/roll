@@ -17,21 +17,18 @@ h1 {
     color: #f2eaea;
 }
 
-.text{
-    float: right;
+.info {
     color: #f2eaea;
     font-size: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    width: 300px;
 }
 
-
-p {
-    font-size: 1.2em;
-}
-
-input {
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 1em;
+.info p {
+    margin: 5px 0;
 }
 
 button {
@@ -42,6 +39,7 @@ button {
     cursor: pointer;
     border-radius: 20px;
     border: 2px solid transparent;
+    margin-top: 20px;
 }
 
 button:hover {
