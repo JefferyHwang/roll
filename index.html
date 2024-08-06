@@ -19,144 +19,169 @@
     </div>
     <button id="lotteryButton" onclick="enterLottery()">Enter Lottery</button>
 
+    <div class="past-winners">
+        <h2>Past Winners</h2>
+        <div id="pastWinners"></div>
+    </div>
+
     <script>
-        const contractAddress = '0x6A9F882f831296A6488da13b3f09e564e9E3D868'; // 替换为你的合约地址
+        const contractAddress = '0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B'; 
         const contractABI = [
-            {
-                "inputs": [],
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "firstPrizeWinner",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "secondPrizeWinner",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "thirdPrizeWinner",
-                        "type": "address"
-                    }
-                ],
-                "name": "LotteryDrawn",
-                "type": "event"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "participant",
-                        "type": "address"
-                    }
-                ],
-                "name": "LotteryEntered",
-                "type": "event"
-            },
-            {
-                "inputs": [],
-                "name": "enterLottery",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "firstPrizeWinner",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "getParticipants",
-                "outputs": [
-                    {
-                        "internalType": "address[]",
-                        "name": "",
-                        "type": "address[]"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "manager",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "participants",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "secondPrizeWinner",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "thirdPrizeWinner",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ];
+	{
+		"inputs": [],
+		"name": "enterLottery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "firstPrizeWinner",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "secondPrizeWinner",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "thirdPrizeWinner",
+				"type": "address"
+			}
+		],
+		"name": "LotteryDrawn",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "participant",
+				"type": "address"
+			}
+		],
+		"name": "LotteryEntered",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "getParticipants",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPastWinners",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "firstPrizeWinner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "secondPrizeWinner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "thirdPrizeWinner",
+						"type": "address"
+					}
+				],
+				"internalType": "struct Lottery.Winners[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "manager",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "participants",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "pastWinners",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "firstPrizeWinner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "secondPrizeWinner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "thirdPrizeWinner",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
 
         let web3;
         let contract;
@@ -196,6 +221,21 @@
 
             const thirdPrizeWinner = await contract.methods.thirdPrizeWinner().call();
             document.getElementById('thirdPrizeWinner').innerText = formatAddress(thirdPrizeWinner);
+
+            const pastWinners = await contract.methods.getPastWinners().call();
+            const pastWinnersDiv = document.getElementById('pastWinners');
+            pastWinnersDiv.innerHTML = '';
+            pastWinners.forEach((winner, index) => {
+                const winnerElement = document.createElement('div');
+                winnerElement.innerHTML = `
+                    <p><b>Draw ${index + 1}</b></p>
+                    <p>🥇First Prize: ${formatAddress(winner.firstPrizeWinner)}</p>
+                    <p>🥈Second Prize: ${formatAddress(winner.secondPrizeWinner)}</p>
+                    <p>🥉Third Prize: ${formatAddress(winner.thirdPrizeWinner)}</p>
+                    <hr>
+                `;
+                pastWinnersDiv.appendChild(winnerElement);
+            });
 
             document.getElementById('connectButton').innerText = 'Connected';
             document.getElementById('connectButton').style.opacity = 0.5;

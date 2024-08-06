@@ -4,9 +4,14 @@ pragma solidity ^0.8.0;
 contract Lottery {
     address public manager;
     address[] public participants;
-    address public firstPrizeWinner;
-    address public secondPrizeWinner;
-    address public thirdPrizeWinner;
+    
+    struct Winners {
+        address firstPrizeWinner;
+        address secondPrizeWinner;
+        address thirdPrizeWinner;
+    }
+
+    Winners[] public pastWinners;
 
     event LotteryEntered(address participant);
     event LotteryDrawn(address firstPrizeWinner, address secondPrizeWinner, address thirdPrizeWinner);
@@ -30,21 +35,28 @@ contract Lottery {
 
         // Simple random selection (not suitable for production)
         uint firstPrizeIndex = random() % participants.length;
-        firstPrizeWinner = participants[firstPrizeIndex];
+        address firstPrizeWinner = participants[firstPrizeIndex];
 
         // Remove first prize winner from participants list
         participants[firstPrizeIndex] = participants[participants.length - 1];
         participants.pop();
 
         uint secondPrizeIndex = random() % participants.length;
-        secondPrizeWinner = participants[secondPrizeIndex];
+        address secondPrizeWinner = participants[secondPrizeIndex];
 
         // Remove second prize winner from participants list
         participants[secondPrizeIndex] = participants[participants.length - 1];
         participants.pop();
 
         uint thirdPrizeIndex = random() % participants.length;
-        thirdPrizeWinner = participants[thirdPrizeIndex];
+        address thirdPrizeWinner = participants[thirdPrizeIndex];
+
+        // Record the winners
+        pastWinners.push(Winners({
+            firstPrizeWinner: firstPrizeWinner,
+            secondPrizeWinner: secondPrizeWinner,
+            thirdPrizeWinner: thirdPrizeWinner
+        }));
 
         emit LotteryDrawn(firstPrizeWinner, secondPrizeWinner, thirdPrizeWinner);
 
@@ -59,5 +71,9 @@ contract Lottery {
 
     function getParticipants() public view returns (address[] memory) {
         return participants;
+    }
+
+    function getPastWinners() public view returns (Winners[] memory) {
+        return pastWinners;
     }
 }

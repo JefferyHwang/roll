@@ -54,3 +54,20 @@ button:hover {
     top: 20px;
     right: 20px;
 }
+
+.past-winners {
+    margin-top: 20px;
+    color: #f2eaea;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.past-winners h2 {
+    margin-top: 0;
+}
+
+.past-winners div {
+    margin-bottom: 10px;
+}
