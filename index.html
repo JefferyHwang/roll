@@ -25,163 +25,163 @@
     </div>
 
     <script>
-        const contractAddress = '0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B'; // 新的合约地址
+        const contractAddress = '0xf17b55a56a6ec6871f4ceeaa610aede1c6119460'; // 新的合约地址
         const contractABI = [
-            {
-                "inputs": [],
-                "name": "enterLottery",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "firstPrizeWinner",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "secondPrizeWinner",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "thirdPrizeWinner",
-                        "type": "address"
-                    }
-                ],
-                "name": "LotteryDrawn",
-                "type": "event"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "internalType": "address",
-                        "name": "participant",
-                        "type": "address"
-                    }
-                ],
-                "name": "LotteryEntered",
-                "type": "event"
-            },
-            {
-                "inputs": [],
-                "name": "getParticipants",
-                "outputs": [
-                    {
-                        "internalType": "address[]",
-                        "name": "",
-                        "type": "address[]"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "getPastWinners",
-                "outputs": [
-                    {
-                        "components": [
-                            {
-                                "internalType": "address",
-                                "name": "firstPrizeWinner",
-                                "type": "address"
-                            },
-                            {
-                                "internalType": "address",
-                                "name": "secondPrizeWinner",
-                                "type": "address"
-                            },
-                            {
-                                "internalType": "address",
-                                "name": "thirdPrizeWinner",
-                                "type": "address"
-                            }
-                        ],
-                        "internalType": "struct Lottery.Winners[]",
-                        "name": "",
-                        "type": "tuple[]"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "manager",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "participants",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "pastWinners",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "firstPrizeWinner",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "secondPrizeWinner",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "thirdPrizeWinner",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ];
+	{
+		"inputs": [],
+		"name": "enterLottery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "firstPrizeWinner",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "secondPrizeWinner",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "thirdPrizeWinner",
+				"type": "address"
+			}
+		],
+		"name": "LotteryDrawn",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "participant",
+				"type": "address"
+			}
+		],
+		"name": "LotteryEntered",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "getParticipants",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPastWinners",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "firstPrizeWinner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "secondPrizeWinner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "thirdPrizeWinner",
+						"type": "address"
+					}
+				],
+				"internalType": "struct Lottery.Winners[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "manager",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "participants",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "pastWinners",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "firstPrizeWinner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "secondPrizeWinner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "thirdPrizeWinner",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
 
         let web3;
         let contract;
